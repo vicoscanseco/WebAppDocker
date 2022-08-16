@@ -17,5 +17,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the docker image
-        run: docker build . --file Dockerfile --tag webappdocker:$(date +%s)
-        working-directory: "${{ env.PROJECT_PATH }}"
+        run: docker build . --file "${{ env.PROJECT_PATH }}/Dockerfile" --tag webappdocker:$(date +%s)
+        
