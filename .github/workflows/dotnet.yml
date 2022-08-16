@@ -22,4 +22,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-          
+
+      - name: Restore Packages
+        run: dotnet restore "${{ env.PROJECT_PATH }}"
+
+      - name: Build - .Net Core ${{ env.DOTNET_CORE_VERSION }}
+        run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }}
+        working-directory: "${{ env.PROJECT_PATH }}"
