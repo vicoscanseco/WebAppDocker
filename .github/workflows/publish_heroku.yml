@@ -8,7 +8,8 @@ on:
 env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   APP_NAME: ${{ 'webappdocker' }}
-
+  PROJECT_PATH: WebAppDocker
+  
 jobs:
 
   deploy:
@@ -22,7 +23,7 @@ jobs:
     # Build Docker image
     - name: Docker build
       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-      
+
     - name: Build the docker image
       run: docker build . --file "${{ env.PROJECT_PATH }}/Dockerfile" --tag webappdocker:$(date +%s)
 
