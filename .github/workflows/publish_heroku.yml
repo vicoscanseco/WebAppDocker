@@ -17,11 +17,14 @@ jobs:
     steps:
     # Clone the repository
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # Build Docker image
     - name: Docker build
       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+      
+    - name: Build the docker image
+      run: docker build . --file "${{ env.PROJECT_PATH }}/Dockerfile" --tag webappdocker:$(date +%s)
 
     # Push the Docker image to Heroku Container Registry
     - name: Publish
