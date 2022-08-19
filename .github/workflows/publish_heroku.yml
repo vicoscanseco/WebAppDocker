@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
         id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+        uses: gonuit/heroku-docker-deploy@v1.3.3  # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
-          api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
-          app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
-          dockerfile_path: 'WebAppDocker/WebAppDocker/Dockerfile' 
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
+          dockerfile_directory: ./WebAppDocker/
+          dockerfile_name: Dockerfile
           
