@@ -10,7 +10,8 @@ env:
   APP_NAME: ${{ 'webappdocker' }}
 
 jobs:
-  build:
+
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
