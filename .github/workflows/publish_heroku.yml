@@ -17,6 +17,6 @@ jobs:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
-          dockerfile_directory: ./WebAppDocker/
+          dockerfile_directory: ./WebAppDocker/WebAppDocker/
           dockerfile_name: Dockerfile
           
