@@ -6,7 +6,6 @@ on:
       - '**/*.md'
 
 env:
-  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   PROJECT_PATH: WebAppDocker
   
 jobs:
@@ -22,11 +21,10 @@ jobs:
     # Build Docker image
     - name: Docker build
       id: heroku
-      uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+      uses: mtsmachado8/heroku-deploy@v1.0.0  # use the latest version of the action
       with:
         email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
         api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
         app_name: ${{ secrets.HEROKU_APP_NAME }} # you application name
         dockerfile_path: '$PROJECT_PATH/Dockerfile'# set the path to the folder where the Dokerfile is located
         options: '' # Docker Build Options
-        formation: '' # Docker Dyno Formation. By default is web
