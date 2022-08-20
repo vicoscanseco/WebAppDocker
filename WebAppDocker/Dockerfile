@@ -7,8 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["WebAppDocker/WebAppDocker.csproj", "WebAppDocker/"]
-RUN dotnet restore "WebAppDocker/WebAppDocker.csproj"
+COPY ["WebAppDocker.csproj", ""]
+RUN dotnet restore "WebAppDocker.csproj"
 COPY . .
 WORKDIR "/src/WebAppDocker"
 RUN dotnet build "WebAppDocker.csproj" -c Release -o /app/build
