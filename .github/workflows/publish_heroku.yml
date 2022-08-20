@@ -7,12 +7,11 @@ on:
 
 env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-  APP_NAME: ${{ 'webappdocker' }}
   PROJECT_PATH: WebAppDocker
   
 jobs:
 
-  deploy:
+  build:
     name: Deploy to Heroku
     runs-on: ubuntu-latest
     steps:
@@ -22,13 +21,12 @@ jobs:
 
     # Build Docker image
     - name: Docker build
-      run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-
-    - name: Build the docker image
-      run: docker build . --file "${{ env.PROJECT_PATH }}/Dockerfile" --tag webappdocker:$(date +%s)
-
-    # Push the Docker image to Heroku Container Registry
-    - name: Publish
-      run: |
-        heroku container:push web -a $APP_NAME
-        heroku container:release web -a $APP_NAME
+      id: heroku
+      uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+      with:
+        email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
+        api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
+        app_name: ${{ secrets.HEROKU_APP_NAME }} # you application name
+        dockerfile_path: $PROJECT_PATH # set the path to the folder where the Dokerfile is located
+        options: '' # Docker Build Options
+        formation: '' # Docker Dyno Formation. By default is web
